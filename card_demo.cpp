@@ -19,15 +19,20 @@ int main( )
 {
     int numCards = 5;
     
+    cout << "Constructing Players\n";
     Player p1("Joe");
     Player p2("Jane");
     
+    cout << "Constructing deck\n";
     Deck d;  //create a deck of cards
+    cout << "Shuffling deck\n";
     d.shuffle();
     
+    cout << "Dealing hands\n";
     dealHand(d, p1, numCards);
     dealHand(d, p2, numCards);
-       
+    cout << "Hands dealt\n";
+
     cout << p1.getName() <<" has : " << p1.showHand() << endl;
     cout << p2.getName() <<" has : " << p2.showHand() << endl;
     

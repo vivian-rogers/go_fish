@@ -26,7 +26,8 @@ Card::Card(int rank, Suit s) {
 }
 
 string Card::toString() const{
-	return (rankString(myRank) + suitString(mySuit));
+	return "ahahahahhhhhhhhhhhh";
+	//return (rankString(myRank) + suitString(mySuit));
 }
 
 bool Card::sameSuitAs(const Card& c) const{

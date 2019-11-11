@@ -28,6 +28,8 @@ class Player
     }
 
     string getName() const {
+       cout << "Debug: entering Player::getName()\n";
+       cout << "Debug: myName: " << myName << endl;
        return myName;
     }
     
