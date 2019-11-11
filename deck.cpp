@@ -17,11 +17,12 @@ Deck::Deck() {
 	int count = 0;
 	for (int rank = 1; rank < 14; rank++){
 		for(int i = 0; i < 4; i++){
-			myCards[count] = Card(rank,(Card::Suit)i);
+			myCards[count] = Card(rank,(Card::Suit(i)));
 			count++;
 		}
 	}
 	myIndex = count;
+	srand(time(NULL));
 }
 
 void Deck::shuffle() {

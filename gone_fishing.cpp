@@ -17,6 +17,7 @@ void dealHand(Deck &d, Player &p, int numCards);
 
 int main( )
 {
+    	int numCards = 5;
 	cout << "Creating deck ..." << endl;
 	Deck deck;
 	cout << "Shuffling deck ..." << endl;
@@ -35,10 +36,23 @@ int main( )
 	// in the machinery of night, who poverty and tatters and hollow-eyed high sat up
 	//smoking in the supernatural darkness of cold-water flats floating across the tops of cities contemplating jazz
 	//										-Allen Ginsburg
+    	cout << "Dealing hands\n";
+    	dealHand(deck, p1, numCards);
+    	dealHand(deck, p2, numCards);
+	dealHand(deck, p3, numCards);
+    	cout << "Hands dealt\n";
+
+    	cout << p1.getName() <<" has : " << p1.showHand() << endl;
+    	cout << p2.getName() <<" has : " << p2.showHand() << endl;
+    	cout << p3.getName() <<" has : " << p3.showHand() << endl;
 	
 
-    	int numCards = 5;
-    
+	while(deck.size() > 0){
+	       bool turnIsOngoing = true;
+	       while(turnIsOngoing) {
+			Card chosenCard = p1.chooseCardFromHand();	
+
+
     cout << "Constructing Players\n";
     Player p1("Joe");
     Player p2("Jane");
@@ -67,6 +81,15 @@ void dealHand(Deck &d, Player &p, int numCards)
       p.addCard(d.dealCard());
 }
    
-
+Player nthPlayer(int n) {
+	switch(caller) {
+		case: 1
+			return p1;
+		case: 2
+			return p2;
+		case: 3
+		      	return p3;
+	}
+}
 
 

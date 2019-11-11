@@ -26,9 +26,13 @@ Card::Card(int rank, Suit s) {
 }
 
 string Card::toString() const{
-	return "ahahahahhhhhhhhhhhh";
-	//return (rankString(myRank) + suitString(mySuit));
+	//return "ahahahahhhhhhhhhhhh";
+	return (rankString(myRank)+ suitString(mySuit));
+	//cout << "the suit is" << mySuit << endl;
+	//Suit testSuit = mySuit;
+	//return suitString(Card::Suit(mySuit));
 }
+
 
 bool Card::sameSuitAs(const Card& c) const{
 	return (mySuit == c.getSuit());
@@ -38,7 +42,7 @@ int Card::getRank() const{
 	return myRank;	
 }
 
-string Card::suitString(Suit s) const {
+string Card::suitString(Suit s) const{
 	switch(s) {
 		case spades:
 			return "s";
@@ -49,6 +53,7 @@ string Card::suitString(Suit s) const {
 		case clubs:
 			return "c";
 	}
+	return ":( bad suit ";
 }
 
 string Card::rankString(int r) const{
@@ -81,6 +86,7 @@ string Card::rankString(int r) const{
 			return "K";
 
 	}
+	return ":( bad rank ";
 }
 
 
