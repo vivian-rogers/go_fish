@@ -11,7 +11,7 @@ using namespace std;
 
 // PROTOTYPES for functions used by this demonstration program:
 
-Suit Card::getSuit() const{
+Card::Suit Card::getSuit() const{
 	return mySuit;
 }
 
