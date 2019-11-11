@@ -1,5 +1,5 @@
 final: player.o deck.o card.o demo.o
-	g++ -otest test demo.o player.o deck.o card.o
+	g++ -otest card_demo.o player.o deck.o card.o
 demo.o: card_demo.cpp deck.h card.h player.h
 	g++ -c card_demo.cpp
 player.o: player.cpp deck.h card.h
