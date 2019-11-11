@@ -22,6 +22,7 @@ Deck::Deck() {
 		}
 	}
 	myIndex = count;
+	srand(time(NULL));
 }
 
 void Deck::shuffle() {
