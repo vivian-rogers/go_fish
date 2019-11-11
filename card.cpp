@@ -84,11 +84,19 @@ string Card::rankString(int r) {
 
 
 bool Card::operator ==(const Card& rhs) const {
-	return ( (myRank == rhs.getRank()) && this.sameSuitAs(rhs)); 
+	return ( (myRank == rhs.getRank()) && this->sameSuitAs(rhs)); 
 }
 
 bool Card::operator !=(const Card& rhs) const {
 	return ~(*this == rhs);
 }
 
-Card::~Card() {}
+void Card::operator =(const Card& rhs) {
+	myRank = rhs.getRank();
+	mySuit = rhs.getSuit();
+}
+
+//Card::~Card() {}
+
+
+

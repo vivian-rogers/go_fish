@@ -17,7 +17,7 @@ Deck::Deck() {
 	int count = 0;
 	for (int rank = 1; rank < 14; rank++){
 		for(int i = 0; i < 4; i++){
-			myCards[count] = Card(rank, Suit(i));
+			myCards[count] = Card(rank,(Card::Suit)i);
 			count++;
 		}
 	}
@@ -27,12 +27,12 @@ Deck::Deck() {
 void Deck::shuffle() {
 	for (int i = 0; i < myIndex * 5; i++) {
 		if(myIndex > 1) {
-			deckIndex1 = rand() % myIndex;
-			deckIndex2 = rand() % myIndex;
-			Card temp(); //implemented a swap.. do not need it elsewhere?
-		        temp = myCards[deckIndex1];
-			myCards[deckIndex1] = myCards[deckIndex2];
-			myCards[deckIndex2] = temp;
+			int deckIndex1 = rand() % myIndex;
+			int deckIndex2 = rand() % myIndex;
+			Card temp; //implemented a swap.. do not need it elsewhere?
+		        temp=myCards[deckIndex1];
+			myCards[deckIndex1]=myCards[deckIndex2];
+			myCards[deckIndex2]=temp;
 		}
 	}
 }

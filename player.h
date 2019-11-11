@@ -19,7 +19,9 @@ using namespace std;
 class Player
 {
   public:
-    Player();
+    Player() {
+       myName = "Moloch";
+    }
 
     Player(string name) {
        myName = name;
