@@ -25,7 +25,7 @@ Card::Card(int rank, Suit s) {
 	mySuit = s;
 }
 
-string Card::toString(){
+string Card::toString() const{
 	return (rankString(myRank) + suitString(mySuit));
 }
 
@@ -50,7 +50,7 @@ string Card::suitString(Suit s) const {
 	}
 }
 
-string Card::rankString(int r) {
+string Card::rankString(int r) const{
 	switch(r) {
 		case 1:
 			return "A";
