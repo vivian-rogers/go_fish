@@ -49,8 +49,16 @@ int main( )
 
 	while(deck.size() > 0){
 	       bool turnIsOngoing = true;
+	       int player = 1;
 	       while(turnIsOngoing) {
-			Card chosenCard = p1.chooseCardFromHand();	
+		       	if(nthPlayer(player)->getHandSize() == 0 ){ 
+				nthPlayer->addCard(deck.dealCard());
+			}	
+			Card chosenCard = nthPlayer(player)->chooseCardFromHand();
+			Player* chosenPlayer = nthPlayer(exclusiveRand(player));
+			cout << p1.getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+
+			
 
 
     cout << "Constructing Players\n";
@@ -81,15 +89,21 @@ void dealHand(Deck &d, Player &p, int numCards)
       p.addCard(d.dealCard());
 }
    
-Player nthPlayer(int n) {
+Player& nthPlayer(int n) { //returns nth player
 	switch(caller) {
 		case: 1
-			return p1;
+			return p1&;
 		case: 2
-			return p2;
+			return p2&;
 		case: 3
-		      	return p3;
+		      	return p3&;
 	}
 }
 
-
+int exclusiveRand(int caller) { //returns any random number from 1 to 3 but NOT the one that called it
+	int rand = (rand() % 3) + 1;
+	while(rand != caller) {
+		rand = (rand() % 3) + 1;
+	}
+	return rand;
+}
