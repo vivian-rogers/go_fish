@@ -53,15 +53,18 @@ int main( )
 	       while(turnIsOngoing) { 
 		        Player* player = nthPlayer(playernum); //assigns the base player from its number
 		       	if(player->getHandSize() == 0 ){ //if the player's hand is empty, draw a card
-				nthPlayer->addCard(deck.dealCard());
+				player->addCard(deck.dealCard());
 			}	
 		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
-				Card chosenCard = player->chooseCardFromHand();
-				Player* chosenPlayer = nthPlayer(exclusiveRand(player));
-				cout << .getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+				Card chosenCard = player->chooseCardFromHand(); 
+				Player* chosenPlayer = nthPlayer(exclusiveRand(player)); //picks an enemy player
+				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
 				turnIsOnGoing = false; //assumes turn is over, might be changed if a match is found
 				if(chosenPlayer->sameRankInHand(chosenCard)) {
-					chosenPlayer -> removeCardFromHand(chosenCard);
+					//return cark with the same rank 
+					
+					//chosenPlayer->removeCardFromHand(cardWithSameRank);
+					//chosenPlayer->
 
 
 			}
