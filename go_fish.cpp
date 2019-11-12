@@ -11,8 +11,8 @@ using namespace std;
 
 // PROTOTYPES for functions used by this demonstration program:
 void dealHand(Deck &d, Player &p, int numCards);
-Player& nthPlayer(int n);
-exclusiveRand(int caller);
+Player* nthPlayer(int n);
+int exclusiveRand(int caller);
 
 
 
@@ -54,15 +54,15 @@ int main( )
 	       bool turnIsOngoing = true;
 	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
-		        cout << "Player 1 hand: " << nthPlayer(1).showHand() << endl;
-		        cout << "Player 2 hand: " << nthPlayer(2).showHand() << endl;
-		        cout << "Player 3 hand: " << nthPlayer(3).showHand() << endl;
+		        cout << "Player 1 hand: " << p1.showHand() << endl;
+		        cout << "Player 2 hand: " << p2.showHand() << endl;
+		        cout << "Player 3 hand: " << p3.showHand() << endl;
                         cout << "current turn: " << playernum << endl;
 
 		        Player* player = nthPlayer(playernum); //assigns the base player from its number
 		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = player->chooseCardFromHand(); 
-				Player* chosenPlayer = nthPlayer(exclusiveRand(player)); //picks an enemy player
+				Player* chosenPlayer = nthPlayer(exclusiveRand(playernum)); //picks an enemy player
 				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(chosenPlayer->sameRankInHand(chosenCard)) {
@@ -90,7 +90,11 @@ int main( )
 	       }
 	}
 	//display winner and end game
-return
+	//
+	//
+	//
+	//adddddADDDDDDDDDDDDD WINNER 
+return EXIT_SUCCESS;
 }
 
 
@@ -101,14 +105,14 @@ void dealHand(Deck &d, Player &p, int numCards)
       p.addCard(d.dealCard());
 }
    
-Player& nthPlayer(int n) { //returns nth player
-	switch(caller) {
+Player* nthPlayer(int n) { //returns nth player
+	switch(n) {
 		case: 1
-			return p1&;
+			return &p1;
 		case: 2
-			return p2&;
+			return &p2;
 		case: 3
-		      	return p3&;
+		      	return &p3;
 	}
 }
 
