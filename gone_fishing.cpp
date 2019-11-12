@@ -47,10 +47,27 @@ int main( )
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
 	
 
-	while(deck.size() > 0){
+	while( (p1.getHandSize != 0 )&&(p2.getHandSize != 0 )&&(p3.getHandSize != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
-	       while(turnIsOngoing) {
-			Card chosenCard = p1.chooseCardFromHand();	
+	       int playernum = 1;
+	       while(turnIsOngoing) { 
+		        Player* player = nthPlayer(playernum); //assigns the base player from its number
+		       	if(player->getHandSize() == 0 ){ //if the player's hand is empty, draw a card
+				player->addCard(deck.dealCard());
+			}	
+		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
+				Card chosenCard = player->chooseCardFromHand(); 
+				Player* chosenPlayer = nthPlayer(exclusiveRand(player)); //picks an enemy player
+				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+				turnIsOnGoing = false; //assumes turn is over, might be changed if a match is found
+				if(chosenPlayer->sameRankInHand(chosenCard)) {
+					//return cark with the same rank 
+					
+					//chosenPlayer->removeCardFromHand(cardWithSameRank);
+					//chosenPlayer->
+
+
+			}
 
 
     cout << "Constructing Players\n";
@@ -81,15 +98,21 @@ void dealHand(Deck &d, Player &p, int numCards)
       p.addCard(d.dealCard());
 }
    
-Player nthPlayer(int n) {
+Player& nthPlayer(int n) { //returns nth player
 	switch(caller) {
 		case: 1
-			return p1;
+			return p1&;
 		case: 2
-			return p2;
+			return p2&;
 		case: 3
-		      	return p3;
+		      	return p3&;
 	}
 }
 
-
+int exclusiveRand(int caller) { //returns any random number from 1 to 3 but NOT the one that called it
+	int rand = (rand() % 3) + 1;
+	while(rand != caller) {
+		rand = (rand() % 3) + 1;
+	}
+	return rand;
+}
