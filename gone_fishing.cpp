@@ -45,28 +45,42 @@ int main( )
     	cout << p1.getName() <<" has : " << p1.showHand() << endl;
     	cout << p2.getName() <<" has : " << p2.showHand() << endl;
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
+	int playernum = 1;
 	
 
 	while( (p1.getHandSize != 0 )||(p2.getHandSize != 0 )||(p3.getHandSize != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
-	       int playernum = 1;
 	       while(turnIsOngoing) { 
 		        Player* player = nthPlayer(playernum); //assigns the base player from its number
 		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = player->chooseCardFromHand(); 
 				Player* chosenPlayer = nthPlayer(exclusiveRand(player)); //picks an enemy player
 				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
-				turnIsOnGoing = false; //assumes turn is over, might be changed if a match is found
+				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(chosenPlayer->sameRankInHand(chosenCard)) {
 					//return card with the same rank 
-					
+					//take card from other player
+					//book cards
+					turnIsOngoing = true;
+
 					//chosenPlayer->removeCardFromHand(cardWithSameRank);
 					//chosenPlayer->
-			}
-		       	if(player->getHandSize() == 0 ){ //if the player's hand is empty, draw a card
-				player->addCard(deck.dealCard());
-			}	
+				}else{
+					turnIsOngoing = false;
+					if (deck.size()){
+						player->addCard(deck.dealCard());
+					}
+				}
 
+			}else{
+				turnIsOngoing = false;
+				if (deck.size()){
+					player->addCard(deck.dealCard());
+				}
+			}
+	       }
+	}
+	//display winner and end game
 
 
 
