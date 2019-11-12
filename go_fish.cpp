@@ -45,6 +45,9 @@ int main( )
 	dealHand(deck, p3, numCards);
     	cout << "Hands dealt\n";
 
+	for (int i = 0; i < 3; i++) {
+		cout << "player" << i+1 << " has " << playerList[i].getHandSize() << " cards in hand\n";
+	}
     	cout << p1.getName() <<" has : " << p1.showHand() << endl;
     	cout << p2.getName() <<" has : " << p2.showHand() << endl;
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
@@ -58,7 +61,7 @@ int main( )
  		   	cout << p2.getName() <<" has : " << p2.showHand() << endl;
  		   	cout << p3.getName() <<" has : " << p3.showHand() << endl;
 			
-
+			cout << "current player hand size: " << playerList[playernum-1].getHandSize() << endl;
 		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
 				int chosenPlayer = exclusiveRand(playernum)-1; //picks an enemy player
@@ -90,7 +93,11 @@ int main( )
 	       }
 	}
 	//display winner and end game
-	//
+	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize()) {
+		cout << "Player 1 Wins\n";
+	}else if (
+	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize()) {
+
 	//
 	//
 	//adddddADDDDDDDDDDDDD WINNER 
