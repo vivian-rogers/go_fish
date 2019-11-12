@@ -45,12 +45,18 @@ int main( )
     	cout << p1.getName() <<" has : " << p1.showHand() << endl;
     	cout << p2.getName() <<" has : " << p2.showHand() << endl;
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
-	int playernum = 1;
+	int playernum = 2;
 	
 
 	while( (p1.getHandSize != 0 )||(p2.getHandSize != 0 )||(p3.getHandSize != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
+	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
+		        cout << "Player 1 hand: " << nthPlayer(1).showHand() << endl;
+		        cout << "Player 2 hand: " << nthPlayer(2).showHand() << endl;
+		        cout << "Player 3 hand: " << nthPlayer(3).showHand() << endl;
+                        cout << "current turn: " << playernum << endl;
+
 		        Player* player = nthPlayer(playernum); //assigns the base player from its number
 		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = player->chooseCardFromHand(); 
@@ -58,15 +64,16 @@ int main( )
 				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(chosenPlayer->sameRankInHand(chosenCard)) {
-					//return card with the same rank 
-					//take card from other player
-					//book cards
+					cout << "Debug: found match with " << chosenCard.toString() << endl;
+					Card plunderedCard = chosenPlayer->removeCardSameRank(chosenCard);
+					cout << "Debug: match is: " << plunderedCard.toString() << endl;
+				       	player->removeCardFromHand(chosenCard);
+					player->bookCards(chosenCard, plunderedCard);
 					turnIsOngoing = true;
 
-					//chosenPlayer->removeCardFromHand(cardWithSameRank);
-					//chosenPlayer->
 				}else{
 					turnIsOngoing = false;
+					cout << "Debug: did not find match with " << chosenCard.toString() << endl;
 					if (deck.size()){
 						player->addCard(deck.dealCard());
 					}
