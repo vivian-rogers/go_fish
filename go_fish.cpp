@@ -93,10 +93,15 @@ int main( )
 	       }
 	}
 	//display winner and end game
-	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize()) {
-		cout << "Player 1 Wins\n";
-	}else if (
-	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize()) {
+	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize())) {
+		cout << "Player 1 wins\n";
+	}else if ((playerList[1].getBookSize() > playerList[0].getBookSize()) && (playerList[1].getBookSize() > playerList[2].getBookSize())) {
+		cout << "Player 2 wins\n";
+	}else if ((playerList[2].getBookSize() > playerList[1].getBookSize()) && (playerList[2].getBookSize() > playerList[0].getBookSize())) {
+		cout << "Player 3 wins\n";
+	}else{
+		cout << "It's a draw\n";
+	}
 
 	//
 	//
