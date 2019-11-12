@@ -47,18 +47,24 @@ int main( )
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
 	
 
-	while(deck.size() > 0){
+	while( (p1.getHandSize != 0 )&&(p2.getHandSize != 0 )&&(p3.getHandSize != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
-	       int player = 1;
-	       while(turnIsOngoing) {
-		       	if(nthPlayer(player)->getHandSize() == 0 ){ 
+	       int playernum = 1;
+	       while(turnIsOngoing) { 
+		        Player* player = nthPlayer(playernum); //assigns the base player from its number
+		       	if(player->getHandSize() == 0 ){ //if the player's hand is empty, draw a card
 				nthPlayer->addCard(deck.dealCard());
 			}	
-			Card chosenCard = nthPlayer(player)->chooseCardFromHand();
-			Player* chosenPlayer = nthPlayer(exclusiveRand(player));
-			cout << p1.getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
+				Card chosenCard = player->chooseCardFromHand();
+				Player* chosenPlayer = nthPlayer(exclusiveRand(player));
+				cout << .getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+				turnIsOnGoing = false; //assumes turn is over, might be changed if a match is found
+				if(chosenPlayer->sameRankInHand(chosenCard)) {
+					chosenPlayer -> removeCardFromHand(chosenCard);
 
-			
+
+			}
 
 
     cout << "Constructing Players\n";
