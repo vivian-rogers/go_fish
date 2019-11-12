@@ -11,6 +11,8 @@ using namespace std;
 
 // PROTOTYPES for functions used by this demonstration program:
 void dealHand(Deck &d, Player &p, int numCards);
+Player& nthPlayer(int n);
+exclusiveRand(int caller);
 
 
 
@@ -48,7 +50,7 @@ int main( )
 	int playernum = 2;
 	
 
-	while( (p1.getHandSize != 0 )||(p2.getHandSize != 0 )||(p3.getHandSize != 0 )){ //while there are cards still 
+	while( (p1.getHandSize() != 0 )||(p2.getHandSize() != 0 )||(p3.getHandSize() != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
 	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
@@ -61,7 +63,7 @@ int main( )
 		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = player->chooseCardFromHand(); 
 				Player* chosenPlayer = nthPlayer(exclusiveRand(player)); //picks an enemy player
-				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<;
+				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(chosenPlayer->sameRankInHand(chosenCard)) {
 					cout << "Debug: found match with " << chosenCard.toString() << endl;
@@ -88,27 +90,7 @@ int main( )
 	       }
 	}
 	//display winner and end game
-
-
-
-    cout << "Constructing Players\n";
-    Player p1("Joe");
-    Player p2("Jane");
-    
-    cout << "Constructing deck\n";
-    Deck d;  //create a deck of cards
-    cout << "Shuffling deck\n";
-    d.shuffle();
-    
-    cout << "Dealing hands\n";
-    dealHand(d, p1, numCards);
-    dealHand(d, p2, numCards);
-    cout << "Hands dealt\n";
-
-    cout << p1.getName() <<" has : " << p1.showHand() << endl;
-    cout << p2.getName() <<" has : " << p2.showHand() << endl;
-    
-    return EXIT_SUCCESS;  
+return
 }
 
 
@@ -131,9 +113,9 @@ Player& nthPlayer(int n) { //returns nth player
 }
 
 int exclusiveRand(int caller) { //returns any random number from 1 to 3 but NOT the one that called it
-	int rand = (rand() % 3) + 1;
-	while(rand != caller) {
-		rand = (rand() % 3) + 1;
+	int random = (rand() % 3) + 1;
+	while(random != caller) {
+		random = (rand() % 3) + 1;
 	}
-	return rand;
+	return random;
 }
