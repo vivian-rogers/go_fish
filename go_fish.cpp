@@ -51,6 +51,7 @@ int main( )
     	cout << p1.getName() <<" has : " << p1.showHand() << endl;
     	cout << p2.getName() <<" has : " << p2.showHand() << endl;
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
+	cout << "player 1 has a " << p1.chooseCardFromHand().toString() << "\n";
 	int playernum = 2;
 
 	while( (p1.getHandSize() != 0 )||(p2.getHandSize() != 0 )||(p3.getHandSize() != 0 )){ //while there are cards still 
@@ -65,7 +66,7 @@ int main( )
 		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
 				int chosenPlayer = exclusiveRand(playernum)-1; //picks an enemy player
-				cout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << "for matches with "<< chosenCard.toString() << endl;
+				cout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << " for matches with "<< chosenCard.toString() << endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
 					cout << "Debug: found match with " << chosenCard.toString() << endl;
@@ -130,7 +131,7 @@ Player* nthPlayer(int n) { //returns nth player
 
 int exclusiveRand(int caller) { //returns any random number from 1 to 3 but NOT the one that called it
 	int random = (rand() % 3) + 1;
-	while(random != caller) {
+	while(random == caller) {
 		random = (rand() % 3) + 1;
 	}
 	return random;
