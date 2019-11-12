@@ -21,7 +21,7 @@ Deck::Deck() {
 			count++;
 		}
 	}
-	myIndex = count;
+	myIndex = 51;
 	srand(time(NULL));
 }
 

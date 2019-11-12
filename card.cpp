@@ -53,6 +53,7 @@ string Card::suitString(Suit s) const{
 		case clubs:
 			return "c";
 	}
+	cout << "bad suit is " << (int) s << endl;
 	return ":( bad suit ";
 }
 
@@ -86,6 +87,7 @@ string Card::rankString(int r) const{
 			return "K";
 
 	}
+	cout << "bad rank is " << (int) r << endl;
 	return ":( bad rank ";
 }
 
