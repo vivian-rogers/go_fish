@@ -105,7 +105,8 @@ using namespace std;
 	for(int i = 0; i < myHand.size(); i++){
 		size++;
 	}
-	return size;
+	cout << myHand.size() <<endl;
+	return myHand.size();
     
     }
     int Player::getBookSize() const {
@@ -113,7 +114,8 @@ using namespace std;
 	for(int i = 0; i < myBook.size(); i++){
 		size++;
 	}
-	return size;
+	cout << myBook.size() <<endl;
+	return myBook.size();
     }
 
        

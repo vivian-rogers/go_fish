@@ -100,10 +100,10 @@ bool Card::operator !=(const Card& rhs) const {
 	return ~(*this == rhs);
 }
 
-void Card::operator =(const Card& rhs) {
-	myRank = rhs.getRank();
-	mySuit = rhs.getSuit();
-}
+//void Card::operator =(const Card& rhs) {
+//	myRank = rhs.getRank();
+//	mySuit = rhs.getSuit();
+//}
 
 //Card::~Card() {}
 
