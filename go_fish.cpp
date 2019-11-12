@@ -2,9 +2,11 @@
 // This is a small demonstration program showing how the Card and Deck classes are used.
 #include <iostream>    // Provides cout and cin
 #include <cstdlib>     // Provides EXIT_SUCCESS
+#include <fstream>
 #include "card.h"
 #include "player.h"
 #include "deck.h"
+
 
 using namespace std;
 
@@ -20,12 +22,14 @@ int exclusiveRand(int caller);
 int main( )
 {
     	int numCards = 5;
-	cout << "Creating deck ..." << endl;
+	ofstream fout("gofish_results.txt");
+	fout << "Creating deck ..." << endl;
 	Deck deck;
-	cout << "Shuffling deck ..." << endl;
+	fout << "Deck size: " << deck.size() << endl;
+	fout << "Shuffling deck ..." << endl;
 	deck.shuffle();
 
-	cout << "Creating players ..." << endl;
+	fout << "Creating players ..." << endl;
 	Player p1("Epicurus"); //
 	Player p2("Democritus");
 	Player p3("Lucretius");
@@ -39,54 +43,61 @@ int main( )
 	// in the machinery of night, who poverty and tatters and hollow-eyed high sat up
 	//smoking in the supernatural darkness of cold-water flats floating across the tops of cities contemplating jazz
 	//										-Allen Ginsburg
-    	cout << "Dealing hands\n";
-    	dealHand(deck, p1, numCards);
-    	dealHand(deck, p2, numCards);
-	dealHand(deck, p3, numCards);
-    	cout << "Hands dealt\n";
+    	fout << "Dealing hands\n";
+    	dealHand(deck, playerList[0], numCards);
+    	dealHand(deck, playerList[1], numCards);
+	dealHand(deck, playerList[2], numCards);
+    	fout << "Hands dealt\n";
+	fout << "Deck size: " << deck.size() << endl;
 
 	for (int i = 0; i < 3; i++) {
-		cout << "player" << i+1 << " has " << playerList[i].getHandSize() << " cards in hand\n";
+		fout << "player" << i+1 << " has " << playerList[i].getHandSize() << " cards in hand\n";
 	}
-    	cout << p1.getName() <<" has : " << p1.showHand() << endl;
-    	cout << p2.getName() <<" has : " << p2.showHand() << endl;
-    	cout << p3.getName() <<" has : " << p3.showHand() << endl;
-	cout << "player 1 has a " << p1.chooseCardFromHand().toString() << "\n";
+    	fout << playerList[0].getName() <<" has : " << playerList[0].showHand() << endl;
+    	fout << playerList[1].getName() <<" has : " << playerList[1].showHand() << endl;
+    	fout << playerList[2].getName() <<" has : " << playerList[2].showHand() << endl;
+	fout << "player 1 has a " << playerList[0].chooseCardFromHand().toString() << "\n";
 	int playernum = 2;
+	fout << "Deck size: " << deck.size() << endl;
 
-	while( (p1.getHandSize() != 0 )||(p2.getHandSize() != 0 )||(p3.getHandSize() != 0 )){ //while there are cards still 
+	while( (playerList[0].getHandSize() != 0 )||(playerList[1].getHandSize() != 0 )||(playerList[2].getHandSize() != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
+	fout << "Deck size: " << deck.size() << endl;
 	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
-    			cout << p1.getName() <<" has : " << p1.showHand() << endl;
- 		   	cout << p2.getName() <<" has : " << p2.showHand() << endl;
- 		   	cout << p3.getName() <<" has : " << p3.showHand() << endl;
+    			fout << playerList[0].getName() <<" has : " << playerList[0].showHand() << endl;
+ 		   	fout << playerList[1].getName() <<" has : " << playerList[1].showHand() << endl;
+ 		   	fout << playerList[2].getName() <<" has : " << playerList[2].showHand() << endl;
+	fout << "Deck size: " << deck.size() << endl;
 			
-			cout << "current player hand size: " << playerList[playernum-1].getHandSize() << endl;
+			fout << "current player hand size: " << playerList[playernum-1].getHandSize() << endl;
 		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
 				int chosenPlayer = exclusiveRand(playernum)-1; //picks an enemy player
-				cout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << " for matches with "<< chosenCard.toString() << endl;
+	fout << "Deck size: " << deck.size() << endl;
+				fout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << " for matches with "<< chosenCard.toString() << endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
-					cout << "Debug: found match with " << chosenCard.toString() << endl;
+					fout << "Debug: found match with " << chosenCard.toString() << endl;
 					Card plunderedCard = playerList[chosenPlayer].removeCardSameRank(chosenCard);
-					cout << "Debug: match is: " << plunderedCard.toString() << endl;
+					fout << "Debug: match is: " << plunderedCard.toString() << endl;
 				       	playerList[playernum-1].removeCardFromHand(chosenCard);
 					playerList[playernum-1].bookCards(chosenCard, plunderedCard);
 					turnIsOngoing = true;
 
 				}else{
 					turnIsOngoing = false;
-					cout << "Debug: did not find match with " << chosenCard.toString() << endl;
+					fout << "Debug: did not find match with " << chosenCard.toString() << endl;
+					fout << "Debug: deck.size() " << deck.size() << endl;
 					if (deck.size()){
 						playerList[playernum-1].addCard(deck.dealCard());
+						
 					}
 				}
 
 			}else{
 				turnIsOngoing = false;
-				cout << "hand size is zero!!!\n";
+				fout << "hand size is zero!!!\n";
 				if (deck.size()){
 					playerList[playernum-1].addCard(deck.dealCard());
 				}
@@ -95,18 +106,19 @@ int main( )
 	}
 	//display winner and end game
 	if ((playerList[0].getBookSize() > playerList[1].getBookSize()) && (playerList[0].getBookSize() > playerList[2].getBookSize())) {
-		cout << "Player 1 wins\n";
+		fout << "Player 1 wins\n";
 	}else if ((playerList[1].getBookSize() > playerList[0].getBookSize()) && (playerList[1].getBookSize() > playerList[2].getBookSize())) {
-		cout << "Player 2 wins\n";
+		fout << "Player 2 wins\n";
 	}else if ((playerList[2].getBookSize() > playerList[1].getBookSize()) && (playerList[2].getBookSize() > playerList[0].getBookSize())) {
-		cout << "Player 3 wins\n";
+		fout << "Player 3 wins\n";
 	}else{
-		cout << "It's a draw\n";
+		fout << "It's a draw\n";
 	}
 
 	//
 	//
 	//adddddADDDDDDDDDDDDD WINNER 
+	fout.close();
 return EXIT_SUCCESS;
 }
 
@@ -121,11 +133,11 @@ void dealHand(Deck &d, Player &p, int numCards)
 Player* nthPlayer(int n) { //returns nth player
 	switch(n) {
 		case 1:
-			return &p1;
+			return &playerList[0];
 		case 2:
-			return &p2;
+			return &playerList[1];
 		case 3:
-		      	return &p3;
+		      	return &playerList[2];
 	}
 }*/
 
