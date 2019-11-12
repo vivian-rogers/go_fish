@@ -29,6 +29,7 @@ int main( )
 	Player p1("Epicurus"); //
 	Player p2("Democritus");
 	Player p3("Lucretius");
+	Player playerList[] = [p1, p2, p3];
 
 	//the cards were shuffled and their fates were settled before man could even play the game, how ironic 
 	
@@ -104,17 +105,17 @@ void dealHand(Deck &d, Player &p, int numCards)
    for (int i=0; i < numCards; i++)
       p.addCard(d.dealCard());
 }
-   
+/*
 Player* nthPlayer(int n) { //returns nth player
 	switch(n) {
-		case: 1
+		case 1:
 			return &p1;
-		case: 2
+		case 2:
 			return &p2;
-		case: 3
+		case 3:
 		      	return &p3;
 	}
-}
+}*/
 
 int exclusiveRand(int caller) { //returns any random number from 1 to 3 but NOT the one that called it
 	int random = (rand() % 3) + 1;
