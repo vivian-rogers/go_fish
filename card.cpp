@@ -87,8 +87,10 @@ string Card::rankString(int r) const{
 			return "K";
 
 	}
+	string s(1, (char) (r + 0x30));
 	cout << "bad rank is " << (int) r << endl;
-	return ":( bad rank ";
+	string result = ":( is ";
+	return result + s;
 }
 
 

@@ -78,8 +78,9 @@ int main( )
 				fout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << " for matches with "<< chosenCard.toString() << endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
-					fout << "Debug: found match with " << chosenCard.toString() << endl;
+					fout << "found match with " << chosenCard.toString() << endl;
 					Card plunderedCard = playerList[chosenPlayer].removeCardSameRank(chosenCard);
+					fout << "taking " << plunderedCard.toString() << endl;
 //					fout << "Debug: match is: " << plunderedCard.toString() << endl;
 				       	playerList[playernum-1].removeCardFromHand(chosenCard);
 					playerList[playernum-1].bookCards(chosenCard, plunderedCard);
