@@ -29,7 +29,7 @@ int main( )
 	Player p1("Epicurus"); //
 	Player p2("Democritus");
 	Player p3("Lucretius");
-	Player playerList[] = [p1, p2, p3];
+	Player playerList[3] = {p1, p2, p3};
 
 	//the cards were shuffled and their fates were settled before man could even play the game, how ironic 
 	
@@ -49,43 +49,45 @@ int main( )
     	cout << p2.getName() <<" has : " << p2.showHand() << endl;
     	cout << p3.getName() <<" has : " << p3.showHand() << endl;
 	int playernum = 2;
-	
 
 	while( (p1.getHandSize() != 0 )||(p2.getHandSize() != 0 )||(p3.getHandSize() != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
 	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
-		        cout << "Player 1 hand: " << p1.showHand() << endl;
-		        cout << "Player 2 hand: " << p2.showHand() << endl;
-		        cout << "Player 3 hand: " << p3.showHand() << endl;
+		        cout << "Player 1 hand: ";
+			p1.showHand();
+		        cout << "Player 2 hand: ";
+		        p2.showHand();
+		        cout << "Player 3 hand: ";
+			p3.showHand();
                         cout << "current turn: " << playernum << endl;
 
-		        Player* player = nthPlayer(playernum); //assigns the base player from its number
-		       	if(player->getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
-				Card chosenCard = player->chooseCardFromHand(); 
-				Player* chosenPlayer = nthPlayer(exclusiveRand(playernum)); //picks an enemy player
-				cout << player->getName() << " is asking " << chosenPlayer->getName() << "for matches with "<< chosenCard <<endl;
+		        playerList[playernum-1]; //assigns the base player from its number
+		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
+				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
+				int chosenPlayer = exclusiveRand(playernum); //picks an enemy player
+				cout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << "for matches with "<< chosenCard <<endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
-				if(chosenPlayer->sameRankInHand(chosenCard)) {
+				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
 					cout << "Debug: found match with " << chosenCard.toString() << endl;
-					Card plunderedCard = chosenPlayer->removeCardSameRank(chosenCard);
+					Card plunderedCard = playerList[chosenPlayer].removeCardSameRank(chosenCard);
 					cout << "Debug: match is: " << plunderedCard.toString() << endl;
-				       	player->removeCardFromHand(chosenCard);
-					player->bookCards(chosenCard, plunderedCard);
+				       	playerList[playernum-1].removeCardFromHand(chosenCard);
+					playerList[playernum-1].bookCards(chosenCard, plunderedCard);
 					turnIsOngoing = true;
 
 				}else{
 					turnIsOngoing = false;
 					cout << "Debug: did not find match with " << chosenCard.toString() << endl;
 					if (deck.size()){
-						player->addCard(deck.dealCard());
+						playerList[playernum-1].addCard(deck.dealCard());
 					}
 				}
 
 			}else{
 				turnIsOngoing = false;
 				if (deck.size()){
-					player->addCard(deck.dealCard());
+					playerList[playernum-1].addCard(deck.dealCard());
 				}
 			}
 	       }
