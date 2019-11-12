@@ -54,7 +54,9 @@ class Player
     bool cardInHand(Card c) const; 
     
     //Remove the card c from the hand and return it to the caller
-    Card removeCardFromHand(Card c); 
+    Card removeCardFromHand(Card c);
+    //Remove the card with the same rank and return it to the caller 
+    Card removeCardSameRank(Card c);
     
     string showHand() const; 
     string showBooks() const; 
@@ -75,7 +77,9 @@ class Player
     //e.g. will return true if the player has a 7d and the parameter is 7c
     
     bool sameRankInHand(Card c) const; 
-    Card removeCardSameRank(Card c);
+    
+  
+    //
     
   private:
           
