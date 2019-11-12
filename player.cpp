@@ -59,8 +59,20 @@ using namespace std;
     Card Player::removeCardFromHand(Card c) {
     	for(int i = 0; i < myHand.size(); i++){
 		if(c == myHand.at(i)) {
+			Card temp = myHand.at(i);
 			myHand.erase(myHand.begin() + i);
-			return c;
+			return temp;
+		}
+	}
+	//return 0; better hope that it finds the card !
+    	
+    } 
+    Card Player::removeCardSameRank(Card c) {
+    	for(int i = 0; i < myHand.size(); i++){
+		if(c.getRank() == myHand.at(i).getRank()) {
+			Card temp = myHand.at(i);
+			myHand.erase(myHand.begin() + i);
+			return temp;
 		}
 	}
 	//return 0; better hope that it finds the card !
@@ -69,7 +81,7 @@ using namespace std;
     
     string Player::showHand() const {
 //	cout << "Debug: entering Player::showHand()\n";
-    	string hand = ":)";
+    	string hand;
 	for(int i = 0; i < myHand.size(); i++){
 //		cout << "Debug: hand is: " << hand << "!\n";
 //		cout << "Debug: i is: " << i << "\n";
