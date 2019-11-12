@@ -62,25 +62,25 @@ int main( )
 
 	while( (playerList[0].getHandSize() != 0 )||(playerList[1].getHandSize() != 0 )||(playerList[2].getHandSize() != 0 )){ //while there are cards still 
 	       bool turnIsOngoing = true;
-	fout << "Deck size: " << deck.size() << endl;
+//	fout << "Deck size: " << deck.size() << endl;
 	       playernum = ((playernum + 1) % 3) + 1;
 	       while(turnIsOngoing) { 
     			fout << playerList[0].getName() <<" has : " << playerList[0].showHand() << endl;
  		   	fout << playerList[1].getName() <<" has : " << playerList[1].showHand() << endl;
  		   	fout << playerList[2].getName() <<" has : " << playerList[2].showHand() << endl;
-	fout << "Deck size: " << deck.size() << endl;
+//	fout << "Deck size: " << deck.size() << endl;
 			
 			fout << "current player hand size: " << playerList[playernum-1].getHandSize() << endl;
 		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
 				int chosenPlayer = exclusiveRand(playernum)-1; //picks an enemy player
-	fout << "Deck size: " << deck.size() << endl;
+//	fout << "Deck size: " << deck.size() << endl;
 				fout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << " for matches with "<< chosenCard.toString() << endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
 					fout << "Debug: found match with " << chosenCard.toString() << endl;
 					Card plunderedCard = playerList[chosenPlayer].removeCardSameRank(chosenCard);
-					fout << "Debug: match is: " << plunderedCard.toString() << endl;
+//					fout << "Debug: match is: " << plunderedCard.toString() << endl;
 				       	playerList[playernum-1].removeCardFromHand(chosenCard);
 					playerList[playernum-1].bookCards(chosenCard, plunderedCard);
 					turnIsOngoing = true;
@@ -90,15 +90,20 @@ int main( )
 					fout << "Debug: did not find match with " << chosenCard.toString() << endl;
 					fout << "Debug: deck.size() " << deck.size() << endl;
 					if (deck.size()){
+						fout << "Drawing a card...\n";
 						playerList[playernum-1].addCard(deck.dealCard());
-						
-					}
+						if( playerList[playernum-1].rankInHand(chosenCard) ){ 
+							Card temp = playerList[playernum-1].removeCardSameRank(chosenCard);
+							playerList[playernum-1].bookCards(temp,chosenCard);
+						}						
+ 					}
 				}
 
 			}else{
 				turnIsOngoing = false;
 				fout << "hand size is zero!!!\n";
 				if (deck.size()){
+					fout << "Drawing a card...\n";
 					playerList[playernum-1].addCard(deck.dealCard());
 				}
 			}
