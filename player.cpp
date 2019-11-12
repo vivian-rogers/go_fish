@@ -101,19 +101,19 @@ using namespace std;
     	
     } 
     int Player::getHandSize() const {
-    	//int size;
-	//for(int i = 0; i < myHand.size(); i++){
-	//	size++;
-	//}
-	return myHand.size();
+    	int size;
+	for(int i = 0; i < myHand.size(); i++){
+		size++;
+	}
+	return size;
     
     }
     int Player::getBookSize() const {
-    	//int size;
-	//for(int i = 0; i < myBook.size(); i++){
-	//	size++;
-	//}
-	return myBook.size();
+    	int size;
+	for(int i = 0; i < myBook.size(); i++){
+		size++;
+	}
+	return size;
     }
 
        
