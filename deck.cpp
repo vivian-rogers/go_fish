@@ -26,10 +26,10 @@ Deck::Deck() {
 }
 
 void Deck::shuffle() {
-	for (int i = 0; i < myIndex * 5; i++) {
+	for (int i = 0; i < myIndex * 8; i++) {
 		if(myIndex > 1) {
-			int deckIndex1 = rand() % myIndex;
-			int deckIndex2 = rand() % myIndex;
+			int deckIndex1 = rand() % (myIndex + 1);
+			int deckIndex2 = rand() % (myIndex + 1);
 			Card temp; //implemented a swap.. do not need it elsewhere?
 		        temp=myCards[deckIndex1];
 			myCards[deckIndex1]=myCards[deckIndex2];
