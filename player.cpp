@@ -68,15 +68,15 @@ using namespace std;
     } 
     
     string Player::showHand() const {
-	cout << "Debug: entering Player::showHand()\n";
+//	cout << "Debug: entering Player::showHand()\n";
     	string hand = ":)";
 	for(int i = 0; i < myHand.size(); i++){
-		cout << "Debug: hand is: " << hand << "!\n";
-		cout << "Debug: i is: " << i << "\n";
-		cout << "Debug: myHand.size() is: " << myHand.size() << "\n";
+//		cout << "Debug: hand is: " << hand << "!\n";
+//		cout << "Debug: i is: " << i << "\n";
+//		cout << "Debug: myHand.size() is: " << myHand.size() << "\n";
 		hand = hand + myHand.at(i).toString() + " ";	//I think this line is causing an error - Clark, 2:52pm 
 	}
-	cout << "Debug: returning hand: " << hand << "\n";
+//	cout << "Debug: returning hand: " << hand << "\n";
 	return hand;
     	
     }
