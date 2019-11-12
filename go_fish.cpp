@@ -57,11 +57,11 @@ int main( )
     			cout << p1.getName() <<" has : " << p1.showHand() << endl;
  		   	cout << p2.getName() <<" has : " << p2.showHand() << endl;
  		   	cout << p3.getName() <<" has : " << p3.showHand() << endl;
+			
 
-		        playerList[playernum-1]; //assigns the base player from its number
 		       	if(playerList[playernum-1].getHandSize() != 0 ){ //if it's still empty, don't do any of the playing stuff and get yo turn skipped
 				Card chosenCard = playerList[playernum-1].chooseCardFromHand(); 
-				int chosenPlayer = exclusiveRand(playernum); //picks an enemy player
+				int chosenPlayer = exclusiveRand(playernum)-1; //picks an enemy player
 				cout << playerList[playernum-1].getName() << " is asking " << playerList[chosenPlayer].getName() << "for matches with "<< chosenCard.toString() << endl;
 				turnIsOngoing = false; //assumes turn is over, might be changed if a match is found
 				if(playerList[chosenPlayer].sameRankInHand(chosenCard)) {
@@ -82,6 +82,7 @@ int main( )
 
 			}else{
 				turnIsOngoing = false;
+				cout << "hand size is zero!!!\n";
 				if (deck.size()){
 					playerList[playernum-1].addCard(deck.dealCard());
 				}
